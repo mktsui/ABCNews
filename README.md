@@ -12,3 +12,6 @@ Currently this app can:
 5. Search title from existing list
 
 This app uses Retrofit library to fetch data, and Picasso to download and display images.
+
+Thanks and Regards,
+Ryan
