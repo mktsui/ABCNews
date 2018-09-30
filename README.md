@@ -6,8 +6,9 @@ This project is built on top of AAC MVVM model, it fetches data from TMDB API an
 
 Currently this app can:
 1. Load data from TMDB API
-2. Scroll to load more data
-3. Swipe to reload list
-4. Search title from existing list
+2. Display movie titles as CardViews in GridLayout
+3. Scroll to load more data
+4. Swipe to reload list
+5. Search title from existing list
 
 This app uses Retrofit library to fetch data, and Picasso to download and display images.
