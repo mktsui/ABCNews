@@ -6,37 +6,37 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:layout_margin="10dp">
+        android:layout_marginBottom="8dp" android:layout_marginLeft="16dp" android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp">
 
 
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:orientation="vertical">
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
 
-            <com.android.volley.toolbox.NetworkImageView
-                    android:id="@+id/top_news_thumbnail"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:scaleType="centerCrop"/>
-            <TextView
-                    android:id="@+id/top_news_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:textColor="@android:color/holo_blue_dark"
-                    android:layout_marginStart="16dp" android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"/>
+        <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/top_news_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"/>
+        <TextView
+                android:id="@+id/top_news_title"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:textSize="30sp"
+                android:textColor="@android:color/holo_blue_dark"
+                android:layout_marginStart="16dp" android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"/>
 
+        <TextView
+                android:id="@+id/top_news_timestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="14sp" android:layout_marginStart="16dp"/>
 
-            <TextView
-                    android:id="@+id/top_news_timestamp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="14sp" android:layout_marginStart="16dp"/>
-
-        </LinearLayout>
+    </LinearLayout>
 
 
 </android.support.v7.widget.CardView>

@@ -12,6 +12,9 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.balljoint.mktsui.abcnews.Model.News
 import com.balljoint.mktsui.abcnews.Utilities.VolleyService
 import org.json.JSONObject
+import java.time.format.DateTimeFormatter
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NewsViewModel(application: Application): AndroidViewModel(application) {
     private lateinit var newsList: MutableLiveData<List<News>>
@@ -53,7 +56,10 @@ class NewsViewModel(application: Application): AndroidViewModel(application) {
                     val title = newsItem.getString("title")
                     val timestamp = newsItem.getString("pubDate")
 
-                    allNews.add(News(i,imgUrl, title, timestamp))
+                    val date = SimpleDateFormat("yyyyy-mm-dd hh:mm:ss").parse(timestamp)
+                    val newDate = SimpleDateFormat("MMM s, yyyy hh:mm aaa", Locale.ENGLISH).format(date)
+
+                    allNews.add(News(i,imgUrl, title, newDate))
                 }
 
                 newsList.postValue(allNews)
