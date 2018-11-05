@@ -57,7 +57,7 @@ class NewsViewModel(application: Application): AndroidViewModel(application) {
                     val timestamp = newsItem.getString("pubDate")
 
                     val date = SimpleDateFormat("yyyyy-mm-dd hh:mm:ss").parse(timestamp)
-                    val newDate = SimpleDateFormat("MMM s, yyyy hh:mm aaa", Locale.ENGLISH).format(date)
+                    val newDate = SimpleDateFormat("MMM d, yyyy hh:mm a", Locale.ENGLISH).format(date)
 
                     allNews.add(News(i,imgUrl, title, newDate))
                 }
