@@ -10,9 +10,9 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.balljoint.mktsui.abcnews.Model.News
-import com.balljoint.mktsui.abcnews.Utilities.VolleyService
+import com.balljoint.mktsui.abcnews.Utilities.Constants
+import com.balljoint.mktsui.abcnews.Utilities.VolleySingleton
 import org.json.JSONObject
-import java.time.format.DateTimeFormatter
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -33,8 +33,9 @@ class NewsViewModel(application: Application): AndroidViewModel(application) {
     fun loadNews() {
 
         Log.i("ABCNews","Refresh News")
-        val url = "https://api.rss2json.com/v1/api.json?rss_url=http://www.abc.net.au/news/feed/51120/rss.xml"
+        val url = Constants.API_LINK_ABC_NEWS
 
+        // get data from API and parse JSON object
         val allNews : ArrayList<News> = arrayListOf()
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
@@ -43,13 +44,12 @@ class NewsViewModel(application: Application): AndroidViewModel(application) {
                 var newsItem : JSONObject
                 for (i in 0..(news.length() - 1)) {
                     newsItem = news.getJSONObject(i)
-                    var imgUrl: String?
-                    if (i == 0) {
-                        imgUrl = newsItem
+                    var imgUrl: String = if (i == 0) {
+                        newsItem
                             .getJSONObject("enclosure")
                             .getString("link")
                     } else {
-                        imgUrl = newsItem
+                        newsItem
                             .getString("thumbnail")
                     }
 
@@ -62,6 +62,7 @@ class NewsViewModel(application: Application): AndroidViewModel(application) {
                     allNews.add(News(i,imgUrl, title, newDate))
                 }
 
+                // put results in LiveData
                 newsList.postValue(allNews)
             },
             Response.ErrorListener { error ->
@@ -69,7 +70,8 @@ class NewsViewModel(application: Application): AndroidViewModel(application) {
             }
         )
 
-        VolleyService.requestQueue.add(jsonObjectRequest)
+        // call Volley to send request
+        VolleySingleton.getInstance(getApplication()).addToRequestQueue(jsonObjectRequest)
 
     }
 

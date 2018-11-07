@@ -9,9 +9,11 @@ import android.widget.TextView
 import com.android.volley.toolbox.NetworkImageView
 import com.balljoint.mktsui.abcnews.Model.News
 import com.balljoint.mktsui.abcnews.R
-import com.balljoint.mktsui.abcnews.Utilities.VolleyService
-import kotlinx.android.synthetic.main.main_activity.view.*
+import com.balljoint.mktsui.abcnews.Utilities.VolleySingleton
 
+/*
+    Adapter class for news list LiveData object
+ */
 class NewsAdapter(context: Context)
                 : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>(){
 
@@ -54,6 +56,7 @@ class NewsAdapter(context: Context)
         val newsDateView: TextView
         val newsThumbnail: NetworkImageView
 
+        // Only the first news in the list is the top large article
         when(position) {
             0 -> {
 
@@ -72,7 +75,7 @@ class NewsAdapter(context: Context)
         newsTitleView.text = current.newsTitle
         newsDateView.text = current.newsTimeStamp
 
-        newsThumbnail.setImageUrl(current.imgUrl,VolleyService.imageLoader)
+        newsThumbnail.setImageUrl(current.imgUrl, VolleySingleton.getInstance(this.mContext).imageLoader)
     }
 
     override fun getItemCount() = mNewsList.size
