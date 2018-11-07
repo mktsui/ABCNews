@@ -44,7 +44,7 @@ class NewsViewModel(application: Application): AndroidViewModel(application) {
                 var newsItem : JSONObject
                 for (i in 0..(news.length() - 1)) {
                     newsItem = news.getJSONObject(i)
-                    var imgUrl: String = if (i == 0) {
+                    val imgUrl: String = if (i == 0) {
                         newsItem
                             .getJSONObject("enclosure")
                             .getString("link")
@@ -56,7 +56,7 @@ class NewsViewModel(application: Application): AndroidViewModel(application) {
                     val title = newsItem.getString("title")
                     val timestamp = newsItem.getString("pubDate")
 
-                    val date = SimpleDateFormat("yyyyy-mm-dd hh:mm:ss").parse(timestamp)
+                    val date = SimpleDateFormat("yyyyy-MM-dd hh:mm:ss", Locale.UK).parse(timestamp)
                     val newDate = SimpleDateFormat("MMM d, yyyy hh:mm a", Locale.ENGLISH).format(date)
 
                     allNews.add(News(i,imgUrl, title, newDate))
